@@ -1,0 +1,23 @@
+= git-fixup
+
+Roughly equivalent to `git commit --fixup REF && git rebase REF~`
+
+== example
+
+[source,bash]
+----
+git add some/changes.txt # <1>
+git fixup # <2>
+# git fixup HEAD # <3>
+
+git add more/changes.txt
+git fixup HEAD~ # <4>
+
+git add more/oops.txt
+git fixup TAIL # <5>
+----
+<1> start by staging some new changes
+<2> then use `git fixup` to amend the staged changes onto the most recent commit
+<3> this is equivalent to <2>, which is also roughly equivalent to `git commit --amend`
+<4> changes can be applied to past commits, rewriting history from that point forward
+<5> A special reference to the initial commit of the branch, similar to `git rebase --root`
